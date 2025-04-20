@@ -7,7 +7,6 @@ import io.ktor.server.http.content.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.mindrot.jbcrypt.BCrypt
-import java.io.File
 
 fun Application.configureRouting() {
     val username = "admin"
@@ -25,7 +24,9 @@ fun Application.configureRouting() {
     }
 
     routing {
-        staticFiles("/static", File("src/main/resources/static"))
+        static("/static") {
+            resources("static")
+        }
 
         get("/") {
             call.respondRedirect("/static/index.html")
