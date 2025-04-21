@@ -5,7 +5,7 @@ COPY . .
 RUN gradle shadowJar --no-daemon
 
 # Stage 2: Run the app
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-jdk
 WORKDIR /app
 COPY --from=build /app/build/libs/*.jar app.jar
 EXPOSE 8080
